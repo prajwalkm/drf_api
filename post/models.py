@@ -33,17 +33,23 @@ class UserManager(BaseUserManager):
         return self._create_user(email, password, **extra_fields)
 
 
+GENDER_CHOICES = (
+    ('Male', 'Male'),
+    ('Female', 'Female'),
+    ('Other', 'Other')
+)
+
 
 class User(AbstractBaseUser,PermissionsMixin):
     first_name=models.CharField(max_length=120)
     last_name=models.CharField(max_length=120)
+    father_name=models.CharField(max_length=120)
     email=models.EmailField(unique=True)
-    #username=models.CharField(max_length=120,blank=True,null=True)
     is_active=models.BooleanField(default=True)
     is_staff=models.BooleanField(default=False)
-    status=models.CharField(max_length=120,null=True,blank=True)
-    birthdate=models.DateField(null=True)
-    city=models.CharField(max_length=120,null=True,blank=True)
+    gender = models.CharField(choices=GENDER_CHOICES, max_length=6)
+    phone = models.CharField(max_length=20, null=True)
+    spouse_name=models.CharField(max_length=120)
     password=models.CharField(max_length=255)
     objects = UserManager()
 
