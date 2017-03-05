@@ -3,6 +3,8 @@
     
     
    Url to access API'S: 
+
+
     url(r'^user/create/$', UserCreateView.as_view(), name='create'),
     url(r'^user/list/$', UserListView.as_view(), name='list'),
     url(r'^user/(?P<pk>\d+)/detail/$', UserDetailView.as_view(), name='detail'),
