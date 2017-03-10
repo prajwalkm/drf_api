@@ -10,3 +10,14 @@
     url(r'^user/(?P<pk>\d+)/detail/$', UserDetailView.as_view(), name='detail'),
     url(r'^user/(?P<pk>\d+)/update/$', UserUpdateView.as_view(), name='update'),
     url(r'^user/(?P<pk>\d+)/delete/$', UserDeleteView.as_view(), name='delete'),
+
+
+
+
+New URLS:
+
+    url(r'^$', home, name='home'),
+    url(r'^register/$',UserCreateAPIView.as_view() , name='register'),
+    url(r'^welcome/$',welcome , name='welcome'),
+    url(r'^user/edit/(?P<pk>\d+)/$', ProfileDetail.as_view(), name='Profile-Detail'),
+
