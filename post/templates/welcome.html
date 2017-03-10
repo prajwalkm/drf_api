@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block content  %}
+
+<div class="container">
+
+            <form id="loginForm">
+                <div style="text-align:center;">
+                    <h3>Welcome {{user.first_name}}{{user.last_name}}</h3>
+                </div><a href="{% url 'auth_logout' %}">
+                <input type="button" value="Log Out" id="logout"  /></a>
+
+
+
+<a href='/user/edit/{{user.id}}'> <input style="float:right;" type="button" value="Edit" id="edit"  /></a>
+
+            </form>
+        </div>
+
+        <div class="container col-sm-6 col-sm-offset-3">
+          <h2>User Details</h2>
+          <table class="table table-striped">
+
+
+              <tr>
+                <td>First_name</td>
+                <td>{{user.first_name}}</td>
+              </tr>
+              <tr>
+                <td>Last_name</td>
+                <td>{{user.last_name}}</td>
+              </tr>
+
+              <tr>
+                <td>Father_name</td>
+                <td>{{user.father_name}}</td>
+              </tr>
+            <tr>
+                <td>Gender</td>
+                <td>{{user.gender}}</td>
+              </tr>
+              <tr>
+                <td>Phone</td>
+                <td>{{user.phone}}</td>
+              </tr>
+              <tr>
+                <td>email</td>
+                <td>{{user.email}}</td>
+              </tr>
+              <tr>
+                <td>spouse_name</td>
+                <td>{{user.spouse_name}}</td>
+              </tr>
+
+
+          </table>
+        </div>
+{% endblock %}

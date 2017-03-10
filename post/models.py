@@ -5,6 +5,8 @@ from django.contrib.auth.base_user import AbstractBaseUser
 
 from django.contrib.auth.base_user import BaseUserManager
 
+from django.db.models.signals import post_save
+
 # Create your models here.
 
 class UserManager(BaseUserManager):
@@ -50,10 +52,29 @@ class User(AbstractBaseUser,PermissionsMixin):
     gender = models.CharField(choices=GENDER_CHOICES, max_length=6)
     phone = models.CharField(max_length=20, null=True)
     spouse_name=models.CharField(max_length=120)
-    password=models.CharField(max_length=255)
+    OTP=models.CharField(max_length=120,null=True,blank=True)
+
+    date_joined=models.DateTimeField(auto_now=True)
+    #password=models.CharField(max_length=220)
     objects = UserManager()
 
     USERNAME_FIELD = 'email'
 
+
     def __str__(self):
         return self.email
+
+
+#
+# def password_post_save(sender,instance,created,*args,**kwargs):
+#     email=instance
+#     if created:
+#         qs=User.objects.filter(email=email)
+#         inst=qs()
+#         inst.set_password(email)
+#         inst.save()
+#
+#
+#
+#
+# post_save.connect(password_post_save,sender=User)

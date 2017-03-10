@@ -1,0 +1,19 @@
+
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load rest_framework %}
+
+<!-- {% url 'profile-detail' pk=profile.pk %} -->
+
+{% block content %}
+
+
+<form action="{% url 'Profile-Detail' pk=profile.id %}" method="POST" id="loginForm">  {% csrf_token %}
+    {% render_form serializer %}
+
+    <input type="submit" value="Save" id="save">
+</form>
+
+
+
+{% endblock %}

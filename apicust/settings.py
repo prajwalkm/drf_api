@@ -27,17 +27,28 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'shimogawatches@gmail.com'
+EMAIL_HOST_PASSWORD = 'knkhojvnrziejkrw'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 
 # Application definition
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'django.contrib.sites',
+    'registration',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'rest_framework',
+    'crispy_forms',
+
     'post',
 ]
 
@@ -56,7 +67,7 @@ ROOT_URLCONF = 'apicust.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -121,7 +132,24 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_in_env", "static_root")
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static_in_pro", "our_static"),
+    #os.path.join(BASE_DIR, "static_in_env"),
+    #'/var/www/static/',
+)
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_in_env", "media_root")
+
+
+
+
 AUTH_USER_MODEL = 'post.User'
+
+
 REST_FRAMEWORK = {
 
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -131,3 +159,12 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 10
 
 }
+
+
+CRISPY_TEMPLATE_PACK = 'bootstrap3'
+#DJANGO REGISTRATION REDUX SETTINGS
+ACCOUNT_ACTIVATION_DAYS = 7
+REGISTRATION_AUTO_LOGIN = True
+REGISTRATION_EMAIL_HTML = False
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/welcome/'
